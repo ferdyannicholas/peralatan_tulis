@@ -5,15 +5,15 @@
     <div class="row">
         <div class="col">
             <div class="card" style="min-height: 85vh">
-                <div class="card-header bg-white">
+                <div class="card-header" style="background-color: #99dacb;">
                     <div class="row">
-                        <div class="col"><h4 class="font-weight-bold">Report / Laporan Transaksi</h4></div>
+                        <div class="col"><h4 class="font-weight-bold">Laporan Transaksi</h4></div>
                     <div class="col"><a class="btn btn-primary float-right btn-sm" onclick="window.print()"><i class="fas fa-print"></i> Print</a>
-                        <a href="{{ URL::previous() }}" class="btn btn-success float-right btn-sm"><i class="fas fa-arrow-left"></i> Back</a>
+                        <a href="{{ URL::previous() }}" class="btn btn-warning float-right btn-sm"><i class="fas fa-arrow-left"></i> Kembali</a>
                     </div>
                     </div>                 
                 </div>
-                <div class="card-body">
+                <div class="card-body" style="background-color: #f5f6f5;">
                     <div class="row">
                         <div class="col-sm-6">
                               <table width="100%" class="table table-borderless">
@@ -45,12 +45,7 @@
                                     <td width="38%">Total</td>
                                     <td width="2%">:</td>
                                     <td width="60%">{{$transaksi->total}}</td>
-                                </tr>   
-                                <tr>
-                                    <td width="38%">Customer</td>
-                                    <td width="2%">:</td>
-                                    <td width="60%">Take Away Customer</td>
-                                </tr>                   
+                                </tr>                     
                             </table>
                         </div>
                     </div>
@@ -60,8 +55,8 @@
                                 <thead>
                                     <tr>
                                     <th>No</th>
-                                    <th>Product</th>
-                                    <th>Quantity</th>
+                                    <th>Produk</th>
+                                    <th>Jumlah</th>
                                 </tr>
                                 </thead>
                                 <tbody>
