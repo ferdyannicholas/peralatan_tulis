@@ -1,35 +1,29 @@
 @extends('layouts.app')
-<!-- © 2020 Copyright: Tahu Coding -->
+
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="min-height:85vh">
-                <div class="card-header bg-white">
+                <div class="card-header" style="background-color: #99dacb;">
+
                     <form action="{{ url('/transcation') }}" method="get">
                         <div class="row">
                             <div class="col">
                                 <h4 class="font-weight-bold">Products</h4>
                             </div>
-                            <div class="col text-right">
-                                <select name="" id="" class="form-control from-control-sm" style="font-size: 12px">
-                                    <option value="" holder>Filter Category</option>
-                                    <option value="1">All Category...</option>
-                                    <!-- Kembangkan sendiri ya bagian ini kalau bisa pake select2 biar keren -->
-                                </select>
-                            </div>
-                            <div class="col"><input type="text" name="search"
-                                    class="form-control form-control-sm col-sm-12 float-right"
-                                    placeholder="Search Product..." onblur="this.form.submit()"></div>
-                            <div class="col-sm-3"><button type="submit"
-                                    class="btn btn-primary btn-sm float-right btn-block">Cari Product</button></div>
+                            <div class="col"><input type="text" name="search" class="form-control form-control-sm col-sm-12 float-right" placeholder="Search Product..." onblur="this.form.submit()"></div>
+                            <div class="col-sm-3"><button type="submit" class="btn btn-primary btn-sm float-right btn-block">Cari Product</button></div>
                         </div>
                     </form>
+
                 </div>
-                <div class="card-body">
+
+                
+                <div class="card-body" style="background-color: #f5f6f5;">
                     <div class="row">
                         @foreach ($products as $product)
-                        <div style="width: 16.66%;border:1px solid rgb(243, 243, 243)" class="mb-4">
+                        <div style="width: 16.66%;border:1px solid #99dacb;" class="mb-4">
                             <div class="productCard">
                                 <div class="view overlay">
                                     <form action="{{url('/transcation/addproduct', $product->id)}}" method="POST">
@@ -65,31 +59,26 @@
         </div>
         <div class="col-sm-4">
             <div class="card" style="min-height:85vh">
-                <div class="card-header bg-white">
+                <div class="card-header" style="background-color: #99dacb;">
                     <div class="row">
                         <div class="col-sm-4">
                             <h4 class="font-weight-bold">Cart</h4>
                         </div>
-                        <div class="col-sm-8">
-                            <select name="" id="" class="form-control from-control-sm" style="font-size: 13px">
-                                <option value="1">Take Away Customer</option>
-                                <option value="" holder>Other Customer...</option>
-                                <!-- Kembangkan sendiri ya bagian ini -->
-                            </select>
-                        </div>
                     </div>
                 </div>
-                <div class="card-body">
+
+                <div class="card-body" style="background-color: #f5f6f5;">
                     <div style="overflow-y:auto;min-height:53vh;max-height:53vh" class="mb-3">
                         <table class="table table-sm">
                             <thead>
                                 <tr>
                                     <th width="10%">No</th>
-                                    <th width="30%">Nama Product</th>
-                                    <th width="30%">Qty</th>
+                                    <th width="30%">Nama Produk</th>
+                                    <th width="30%">Jumlah</th>
                                     <th width="30%" class="text-right">Sub Total</th>
                                 </tr>
                             </thead>
+
                             <tbody>
                                 @php
                                 $no=1
@@ -104,28 +93,27 @@
                                                     class="fas fa-trash" style="color: rgb(134, 134, 134)"></i></a>
                                         </form>
                                     </td>
+
                                     <td>{{Str::words($item['name'],3)}} <br>Rp.
                                         {{ number_format($item['pricesingle'],2,',','.') }}
                                     </td>
+
                                     <td class="font-weight-bold">
-                                        <form action="{{url('/transcation/decreasecart', $item['rowId'])}}"
-                                            method="POST" style='display:inline;'>
+                                        <form action="{{url('/transcation/decreasecart', $item['rowId'])}}" method="POST" style='display:inline;'>
                                             @csrf
-                                            <button class="btn btn-sm btn-info"
-                                                style="display: inline;padding:0.4rem 0.6rem!important"><i
-                                                    class="fas fa-minus"></i></button>
+                                            <button class="btn btn-sm btn-info" style="display: inline;padding:0.4rem 0.6rem!important"> <i class="fas fa-minus"></i></button>
                                         </form>
+
                                         <a style="display: inline">{{$item['qty']}}</a>
-                                        <form action="{{url('/transcation/increasecart', $item['rowId'])}}"
-                                            method="POST" style='display:inline;'>
+                                        <form action="{{url('/transcation/increasecart', $item['rowId'])}}" method="POST" style='display:inline;'>
                                             @csrf
-                                            <button class="btn btn-sm btn-primary"
-                                                style="display: inline;padding:0.4rem 0.6rem!important"><i
-                                                    class="fas fa-plus"></i></button>
+                                            <button class="btn btn-sm btn-primary" style="display: inline;padding:0.4rem 0.6rem!important"> <i class="fas fa-plus"></i></button>
                                         </form>
                                     </td>
+
                                     <td class="text-right">Rp. {{ number_format($item['price'],2,',','.') }}</td>
                                 </tr>
+
                                 @empty
                                 <tr>
                                     <td colspan="4" class="text-center">Empty Cart</td>
@@ -134,46 +122,35 @@
                             </tbody>
                         </table>
                     </div>
+
                     <table class="table table-sm table-borderless">
                         <tr>
                             <th width="60%">Sub Total</th>
                             <th width="40%" class="text-right">Rp.
                                 {{ number_format($data_total['sub_total'],2,',','.') }} </th>
                         </tr>
-                        <tr>
-                            <th>
-                                <form action="{{ url('/transcation') }}" method="get">
-                                    PPN 10%
-                                    <input type="checkbox" {{ $data_total['tax'] > 0 ? "checked" : ""}} name="tax"
-                                        value="true" onclick="this.form.submit()">
-                                </form>
-                            </th>
-                            <th class="text-right">Rp.
-                                {{ number_format($data_total['tax'],2,',','.') }}</th>
-                        </tr>
+
                         <tr>
                             <th>Total</th>
                             <th class="text-right font-weight-bold">Rp.
                                 {{ number_format($data_total['total'],2,',','.') }}</th>
                         </tr>
                     </table>
+
                     <div class="row">
                         <div class="col-sm-4">
                             <form action="{{ url('/transcation/clear') }}" method="POST">
                                 @csrf
-                                <button class="btn btn-info btn-lg btn-block" style="padding:1rem!important"
-                                    onclick="return confirm('Apakah anda yakin ingin meng-clear cart ?');"
-                                    type="submit">Clear</button>
+                                <button class="btn btn-info btn-lg btn-block" style="padding:1rem!important" onclick="return confirm('Apakah anda yakin ingin meng-clear cart ?');" type="submit">Clear</button>
                             </form>
                         </div>
+
                         <div class="col-sm-4">
-                            <a class="btn btn-primary btn-lg btn-block"
-                                style="padding:1rem!important" href="{{url('/transcation/history')}}" target="_blank">History</a>
-                            <!-- Kembangkan sendiri ya bagian ini, logikanya kita simpan cartnya sementara dalam databse ntar kalau butuh keluarin lagi-->
+                            <a class="btn btn-primary btn-lg btn-block" style="padding:1rem!important" href="{{url('/transcation/history')}}" target="_blank">History</a>
                         </div>
+
                         <div class="col-sm-4">
-                            <button class="btn btn-success btn-lg btn-block" style="padding:1rem!important"
-                                data-toggle="modal" data-target="#fullHeightModalRight">Pay</button>
+                            <button class="btn btn-success btn-lg btn-block" style="padding:1rem!important" data-toggle="modal" data-target="#fullHeightModalRight">Bayar</button>
                         </div>
                     </div>
                 </div>
@@ -181,41 +158,33 @@
         </div>
     </div>
 
-    <div class="modal fade right" id="fullHeightModalRight" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
-
-        <!-- Add class .modal-full-height and then add class .modal-right (or other classes from list above) to set a position to the modal -->
+    <div class="modal fade right" id="fullHeightModalRight" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-full-height modal-right" role="document">
-
-        <!-- Sorry campur2 bahasa indonesia sama inggris krn kebiasaan make b.inggris eh ternyata buat aplikasi buat indonesia jadi gini deh  -->
             <div class="modal-content">
-                <div class="modal-header indigo">
-                    <h6 class="modal-title w-100 text-light" id="myModalLabel">Billing Information</h6>
+
+                <div class="modal-header"  style="background-color: #99dacb;">
+                    <h6 class="modal-title w-100 text-bold" id="myModalLabel">Informasi Pembayaran</h6>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+
+                <div class="modal-body" style="background-color: #f5f6f5;">
                     <table class="table table-sm table-borderless">
                         <tr>
                             <th width="60%">Sub Total</th>
                             <th width="40%" class="text-right">Rp.
                                 {{ number_format($data_total['sub_total'],2,',','.') }} </th>
                         </tr>
-                        @if($data_total['tax'] > 0)
-                        <tr>
-                            <th>PPN 10%</th>
-                            <th class="text-right">Rp.
-                                {{ number_format($data_total['tax'],2,',','.') }}</th>
-                        </tr>
-                        @endif
                     </table>
+
                     <form action="{{ url('/transcation/bayar') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="oke">Input Nominal</label>
                         <input id="oke" class="form-control" type="number" name="bayar" autofocus />
                     </div>
+
                     <h3 class="font-weight-bold">Total:</h3>
                     <h1 class="font-weight-bold mb-5">Rp. {{ number_format($data_total['total'],2,',','.') }}</h1>
                     <input id="totalHidden" type="hidden" name="totalHidden" value="{{$data_total['total']}}" />
@@ -236,8 +205,8 @@
         </div>
     </div>
     @endsection
-    <!-- © 2020 Copyright: Tahu Coding -->
-    <!-- Ini error harusnya bisa dinamis ambil value dari controller tp agar cepet ya biar aja gini silahkan modifikasi  -->
+    
+    
     @push('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     @if(Session::has('error'))
@@ -317,7 +286,6 @@
         }
 
     </script>
-
     @endpush
 
     @push('style')
@@ -376,5 +344,5 @@
         }
 
     </style>
-    <!-- © 2020 Copyright: Tahu Coding -->
+    
     @endpush
