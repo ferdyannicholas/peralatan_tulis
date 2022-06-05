@@ -33,7 +33,7 @@
 
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                    <a class="nav-link font-weight-bolder" href="#"><h4 class="font-weight-bold">Stationery Center</h4></a>
+                    <a class="nav-link font-weight-bolder" href="{{route('products.index')}}"><h4 class="font-weight-bold">Stationery Center</h4></a>
                     </li>
 
                     <li class="nav-item">
