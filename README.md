@@ -26,3 +26,5 @@ ScreenShot Aplikasi
 ![SS](https://github.com/crusherblack/Laravel-POS-Free/blob/master/screenshot/6.jpg)
 
 ![SS](https://github.com/crusherblack/Laravel-POS-Free/blob/master/screenshot/7.jpg)
+# nicholas
+# nicholas git init git add README.md git commit -m first commit git branch -M main git remote add origin https://github.com/NicholasPermana50/nicholas.git push -u origin main
